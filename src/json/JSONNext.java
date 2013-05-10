@@ -27,23 +27,8 @@ public class JSONNext extends JSONParser implements Runnable {
 			  this.setIs(con.getInputStream());
 			  this.setJsonNext(readStream());
 			  con.disconnect();
-			 
-			 //*************************Get the cookie****************************************************
-			  String headerName=null;
-			 
-			  for (int i=1; (headerName = con.getHeaderFieldKey(i))!=null; i++) {
-			   	if (headerName.equals("Set-Cookie")) {                  
-			  	cookie = con.getHeaderField(i);
-			  	cookie = cookie.substring(0, cookie.indexOf(";"));
-		        String cookieName = cookie.substring(0, cookie.indexOf("="));
-		        String cookieValue = cookie.substring(cookie.indexOf("=") + 1, cookie.length());
-			  	System.out.println(cookie);
-			  	System.out.println(cookieName+"="+cookieValue);
-			   	}
-			   	}
-			  
-			  //****************************************************************************			  
 
+			  takeCookieWithConnection(con);
 
 			  } catch (Exception e) {
 			  e.printStackTrace();
@@ -65,7 +50,27 @@ public class JSONNext extends JSONParser implements Runnable {
     	
     }
     
+	 /**
+	  * Method that gets the cookie 
+	  * @param con
+	  */
+	 public void takeCookieWithConnection(HttpURLConnection con){
+		 
+		  String headerName=null;
+			 
+		  for (int i=1; (headerName = con.getHeaderFieldKey(i))!=null; i++) {
+		   	if (headerName.equals("Set-Cookie")) {                  
+		  	cookie = con.getHeaderField(i);
+		  	cookie = cookie.substring(0, cookie.indexOf(";"));
+	        String cookieName = cookie.substring(0, cookie.indexOf("="));
+	        String cookieValue = cookie.substring(cookie.indexOf("=") + 1, cookie.length());
+		  	System.out.println(cookie);
+		  	System.out.println(cookieName+"="+cookieValue);
+		   	}
+		   	}
+	 }
 
+    
 	public String getJsonNext() {
 		return jsonNext;
 	}

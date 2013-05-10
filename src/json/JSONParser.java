@@ -90,7 +90,7 @@ public class JSONParser {
  * Function called in order to transform the InputStream "is" in a string
  * @return 
  */
-protected String readStream() {
+public String readStream() {
 	  BufferedReader reader = null;
 	  try {
 	    reader = new BufferedReader(new InputStreamReader(is));
@@ -98,7 +98,7 @@ protected String readStream() {
 	    StringBuilder sb = new StringBuilder();
 	    while ((line = reader.readLine()) != null) {
 	      System.out.println(line);
-	      sb.append(line + "\n");
+	      sb.append(line);
 	    }
 	    return sb.toString();
 	  } catch (IOException e) {

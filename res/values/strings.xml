@@ -4,5 +4,9 @@
     <string name="app_name">PetRoulette</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="Next">Next</string>
+    <string name="Nextcount">This pet has been nexted :</string>
+    <string name="Pet_name">Pet\'s name</string>
+    
 
 </resources>

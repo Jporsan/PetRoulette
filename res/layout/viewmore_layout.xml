@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/pet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Pet_name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        
+        
+         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" >
+       		 
+       		 <LinearLayout
+       		     android:layout_width="wrap_content"
+       		     android:layout_height="wrap_content"
+       		     android:orientation="vertical" >
+
+            		<TextView
+               		 	android:id="@+id/labelSpecies"
+                		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	               		android:text="Species :" />
+
+	           		 <TextView
+	               		android:id="@+id/labelRace"
+	             		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:text="Race :" />
+	           		  <TextView
+	               		android:id="@+id/labelBirth"
+	             		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:text="Birth date :" />
+
+	           		  
+
+         	</LinearLayout>
+
+       		  <LinearLayout
+       		      android:layout_width="wrap_content"
+       		      android:layout_height="wrap_content"
+       		      android:orientation="vertical" >
+	           		 
+       		            <TextView
+	               		android:id="@+id/Species"
+	             		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:text="none" />
+       		             <TextView
+	               		android:id="@+id/Race"
+	             		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:text="none" />
+	           		  <TextView
+	               		android:id="@+id/Birthdate"
+	             		android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:text="none" />
+
+	           		 
+       		      
+       		      </LinearLayout>
+       		      
+       		       <LinearLayout
+           		 	android:layout_width="100dp"
+            		android:layout_height="fill_parent" 
+            		android:orientation="vertical">   		      
+       		      </LinearLayout>
+       		      
+         		  <LinearLayout
+         		      android:layout_width="wrap_content"
+         		      android:layout_height="wrap_content"
+         		      android:orientation="vertical" >
+	           		 
+       		        	  <TextView
+							android:id="@+id/shelter_name"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Shelter's name"
+							android:layout_gravity="center"
+							android:textAppearance="?android:attr/textAppearanceMedium" />
+                 <TextView
+							android:id="@+id/shelter_phonenumber"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:text="Phone number" />
+
+                 <TextView
+						 android:id="@+id/shelter_address"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:layout_gravity="center"
+						 android:text="Address" />
+
+                 <TextView
+						 android:id="@+id/shelter_youtubeChannel"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:layout_gravity="center"
+						 android:text="YoutubeChannel" />
+
+                 <TextView
+                     android:id="@+id/shelter_email"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:text="e-mail" />
+       		      
+       		      </LinearLayout>
+
+    </LinearLayout>
+
+         <TextView
+             android:id="@+id/otherVideos"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="More videos of this pet" />
+
+         <ScrollView
+             android:id="@+id/scrollView1"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" >
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:id="@+id/Others"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical" >
+             </LinearLayout>
+         </ScrollView>
+           
+    </LinearLayout>
+
+
+</RelativeLayout>

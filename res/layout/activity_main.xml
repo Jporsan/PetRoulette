@@ -7,29 +7,30 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-
-   <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true" 
-        android:orientation="horizontal">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
+            
             <VideoView
-        android:id="@+id/mVideoView"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
-        android:layout_centerVertical="true"/>
+                android:id="@+id/mVideoView"
+ 				android:layout_width="370dp"
+                android:layout_height="200dp" 
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:id="@+id/nextCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/mVideoView"
+                android:layout_centerHorizontal="true"
+                android:text="@string/Nextcount"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ProgressBar
                 android:id="@+id/mProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
+                android:layout_alignTop="@+id/mVideoView"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="60dp" />
 
             <TextView
                 android:id="@+id/mProgressMessage"
@@ -38,55 +39,23 @@
                 android:layout_below="@+id/mProgressBar"
                 android:layout_centerHorizontal="true"
                 android:text="ProgressMessage" />
-            
-	</RelativeLayout>
-           	<LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
-        
-           	        <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Name" />
-           	        
-           	        
-    			<TextView
-        android:id="@+id/species"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Species" />
-    			    
-    			    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Description" />
-           	    
-    			        <TextView
-        android:id="@+id/shelter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Shelter" />
-    			     <!--    <Button
-        android:id="@+id/randomButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Random" />--> 
-    			        <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Next" />
-    			        
-         	</LinearLayout>
-    </LinearLayout>
+
+            <Button
+                android:id="@+id/viewMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/mVideoView"
+                android:layout_alignTop="@+id/mVideoView"
+                android:onClick="viewMore"
+                android:text="View More" />
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/mVideoView"
+                android:layout_toRightOf="@+id/mVideoView"
+                android:onClick="next"
+                android:text="@string/Next" />
 
 </RelativeLayout>

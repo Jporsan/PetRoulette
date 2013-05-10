@@ -24,18 +24,20 @@ import android.widget.VideoView;
 
 public class MainActivity extends Activity {
 
-	Button randomButton;
 	Button nextButton;
+	Button viewMoreButton;
 	TextView shelter;
 	TextView species;
 	TextView name;
 	TextView description;
+	TextView nextCount;
 	Pet pet;
 	OpenYouTubePlayerActivity youtube;
 	protected ProgressBar mProgressBar;
 	protected TextView    mProgressMessage;
 	protected VideoView   mVideoView;
 	static Deserializer des=new Deserializer();
+	ApplicationController ac;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,38 +47,22 @@ public class MainActivity extends Activity {
 		setUpView();
 
 		youtube=new OpenYouTubePlayerActivity(mProgressBar, mProgressMessage, mVideoView, this);
-		
+		ac=(ApplicationController) getApplicationContext();
 		random();
-		/*
-		randomButton.setOnClickListener(new View.OnClickListener() {			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				random();
-				
-				
-			}
-		});
-       */
-		nextButton.setOnClickListener(new View.OnClickListener() {			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				next();
-				
-				
-			}
-		});
+
 		
 	}
 
+	public void viewMore(View view){
+		
+		Intent intent = new Intent(this,ViewMoreActivity.class);
+		startActivityForResult(intent, 1);
+		
+	}
 	public void random(){
 		pet=des.Random();
-		shelter.setText("Shelter: " + pet.getShelter_name());
-		species.setText("species : "+pet.getPet_species() );
-		//description.setText("video link : "+ pet.getPet_currentVideo().getVideo_url());
-		description.setText("Description : "+pet.getPet_description());
-		name.setText("Pet name : "+ pet.getPet_name());
+		ac.setPet(pet);
+		nextCount.setText("This pet has been nexted : " + String.valueOf( pet.getPet_nextCount()));
 		String url=pet.getPet_currentVideo().getVideo_url();
 		// Linkify youtube URLs which are not already links.
 
@@ -85,19 +71,19 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	public void next(){
+	public void next(View view){
 		
 		pet=des.Next();
-		shelter.setText("Shelter: " + pet.getShelter_name());
-		species.setText("species : "+pet.getPet_species() );
-		//description.setText("video link : "+ pet.getPet_currentVideo().getVideo_url());
-		description.setText("Description : "+pet.getPet_description());
-		name.setText("Pet name : "+ pet.getPet_name());
+		ac.setPet(pet);
+		nextCount.setText("This pet has been nexted : " + String.valueOf( pet.getPet_nextCount()));
+
 		String url=pet.getPet_currentVideo().getVideo_url();
+		
 		// Linkify youtube URLs which are not already links.
 
 		String id=getYoutubeIdWithUrl(url);
 		youtube.playVideo(id);
+		nextButton.setClickable(true);
 	}
 
 	public String getYoutubeIdWithUrl(String url){
@@ -112,18 +98,16 @@ public class MainActivity extends Activity {
 	    }
 		return null;
 	}
-	
+	/**
+	 * SetUp the view 
+	 */
 	private void setUpView(){
 		
 		setContentView(R.layout.activity_main);
 		
-		//randomButton=(Button)findViewById(R.id.randomButton);
 		nextButton=(Button)findViewById(R.id.nextButton);
-		shelter=(TextView) findViewById(R.id.shelter);
-		species=(TextView)findViewById(R.id.species);
-		name=(TextView) findViewById(R.id.name);
-		description=(TextView) findViewById(R.id.description);
-		
+		viewMoreButton=(Button) findViewById(R.id.viewMoreButton);
+		nextCount=(TextView) findViewById(R.id.nextCount);
 	    mVideoView=(VideoView)findViewById(R.id.mVideoView);
 
 	    mProgressBar=(ProgressBar) findViewById(R.id.mProgressBar);
@@ -131,8 +115,7 @@ public class MainActivity extends Activity {
 	    mProgressBar.setVisibility(View.VISIBLE);
 	    mProgressBar.setEnabled(true);
 	    mProgressBar.setId(4);
-
-
+	    
 	    mProgressMessage = (TextView) findViewById(R.id.mProgressMessage);
 	    mProgressMessage.setId(5);
 	    mProgressMessage.setTextColor(Color.LTGRAY);
@@ -142,10 +125,34 @@ public class MainActivity extends Activity {
 	}
 	
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode,Intent data){
+		if(requestCode==1){
+			  if (requestCode == 1) {
+
+				     if(resultCode == RESULT_OK){      
+				         int result=data.getIntExtra("result",-1);
+				         if(result>=0){
+				        	 
+				        	String url=pet.getPet_videoList().get(result).getVideo_url();
+				     		String id=getYoutubeIdWithUrl(url);
+				     		pet.setPet_currentVideo(pet.getPet_videoList().get(result));
+				     		youtube.playVideo(id);
+				         }
+				     }
+				     if (resultCode == RESULT_CANCELED) {    
+				         //Write your code if there's no result
+				     }
+				  }
+		
+		}
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
+	
 }

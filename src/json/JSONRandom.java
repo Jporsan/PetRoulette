@@ -22,21 +22,7 @@ public class JSONRandom extends JSONParser implements Runnable {
 				  HttpURLConnection con = (HttpURLConnection) _url
 				    .openConnection();
 				  
-				 //*************************Get the cookie****************************************************
-				  String headerName=null;
-				 
-				  for (int i=1; (headerName = con.getHeaderFieldKey(i))!=null; i++) {
-				   	if (headerName.equals("Set-Cookie")) {                  
-				  	cookie = con.getHeaderField(i);
-				  	cookie = cookie.substring(0, cookie.indexOf(";"));
-			        String cookieName = cookie.substring(0, cookie.indexOf("="));
-			        String cookieValue = cookie.substring(cookie.indexOf("=") + 1, cookie.length());
-				  	System.out.println(cookie);
-				  	System.out.println(cookieName+"="+cookieValue);
-				   	}
-				   	}
-				  
-				  //****************************************************************************
+				  takeCookieWithConnection(con);
 				  this.setIs(con.getInputStream());
 				  this.setJsonRandom(readStream());			  
 
@@ -60,6 +46,27 @@ public class JSONRandom extends JSONParser implements Runnable {
 				}
 	    	
 	    }
+	 
+	 
+	 /**
+	  * Method that gets the cookie needed
+	  * @param con
+	  */
+	 public void takeCookieWithConnection(HttpURLConnection con){
+		 
+		  String headerName=null;
+			 
+		  for (int i=1; (headerName = con.getHeaderFieldKey(i))!=null; i++) {
+		   	if (headerName.equals("Set-Cookie")) {                  
+		  	cookie = con.getHeaderField(i);
+		  	cookie = cookie.substring(0, cookie.indexOf(";"));
+	        String cookieName = cookie.substring(0, cookie.indexOf("="));
+	        String cookieValue = cookie.substring(cookie.indexOf("=") + 1, cookie.length());
+		  	System.out.println(cookie);
+		  	System.out.println(cookieName+"="+cookieValue);
+		   	}
+		   	}
+	 }
 
 	public String getJsonRandom() {
 		return jsonRandom;
@@ -75,6 +82,9 @@ public class JSONRandom extends JSONParser implements Runnable {
 
 	public void setJsonDetails(String jsonDetails) {
 		this.jsonDetails = jsonDetails;
+	}
+	public String getCookie(){
+		return cookie;
 	}
 	
 }

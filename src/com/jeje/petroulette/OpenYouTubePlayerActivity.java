@@ -133,41 +133,11 @@ public class OpenYouTubePlayerActivity{
 	protected QueryYouTubeTask mQueryYouTubeTask;
 	
 	protected String mVideoId = null;
-	
-	//***********TEST*******************
+
 	protected Uri lVideoIdUri;
-	//Button button;
 	protected static MainActivity activity;
-	//**************FIN DE TEST*******************
-	/*
-	@Override
-	protected void onCreate(Bundle pSavedInstanceState) {
-		super.onCreate(pSavedInstanceState);
-		
-		
-		setupView();
-		this.playVideo();
-        button =(Button) findViewById(R.id.play);
-        
-        /*
-         * The Youtube URL that we get is something like following.
-         * http://www.youtube.com/watch?v=J467jzLlDcc
-         * We need the last part of the URL or id of the video-J467jzLlDcc *
-       
-        button.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-
-				playVideo();
-
-				/*
-				 * Please note only the id has been passed and prefix is "ytv" NOT "ytpl"*
-			}
-		});
-	}	
-	*/
 	
+
 	public OpenYouTubePlayerActivity(ProgressBar mProgressBar,
 			TextView mProgressMessage, VideoView mVideoView,
 			MainActivity _activity) {
@@ -271,31 +241,6 @@ public class OpenYouTubePlayerActivity{
         }
 	}
 
-	/**
-	 * Create the view in which the video will be rendered.
-	 */
-	/*
-	private void setupView() {
-
-	    this.setContentView(R.layout.activity_you_tube_test);  
-
-	    mVideoView=(VideoView)findViewById(R.id.mVideoView);
-
-	    mProgressBar=(ProgressBar) findViewById(R.id.mProgressBar);
-	    mProgressBar.setIndeterminate(true);
-	    mProgressBar.setVisibility(View.VISIBLE);
-	    mProgressBar.setEnabled(true);
-	    mProgressBar.setId(4);
-
-
-	    mProgressMessage = (TextView) findViewById(R.id.mProgressMessage);
-	    mProgressMessage.setId(5);
-	    mProgressMessage.setTextColor(Color.LTGRAY);
-	    mProgressMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-	    mProgressMessage.setText("...");
-
-	}
-*/
 	
 	public void updateProgress(String pProgressMsg){
 		try {

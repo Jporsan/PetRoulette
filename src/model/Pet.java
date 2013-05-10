@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Pet {
+public class Pet implements Serializable {
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /******************************************************************************************
  *                                  Variables
  ******************************************************************************************/
@@ -248,5 +253,5 @@ public class Pet {
 	public void setShelter_youtubeChannel(String shelter_youtubeChannel) {
 		this.shelter_youtubeChannel = shelter_youtubeChannel;
 	}
-	
+
 }

@@ -35,6 +35,7 @@ public class Deserializer {
 	private static final String TAG_DATEOFBIRTH="date_of_birth";
 	private static final String TAG_RACEID="race_id";
 	private static final String TAG_NAME="name";
+	private static final String TAG_NEXTCOUNT="next_count";
 	
 	//JSONOBJECT DETAILS
 	//pet
@@ -95,7 +96,7 @@ public class Deserializer {
 			pet_species=detailsPetObj.getString(TAG_SPECIESNAME);
 			pet_description=detailsPetObj.getString(TAG_DESCRIPTION);
 			pet_birthDate=detailsPetObj.getString(TAG_DATEOFBIRTH);
-			pet_nextCount=0;
+			pet_nextCount=randomPetObj.getInt(TAG_NEXTCOUNT);
 			shelter_id=randomPetObj.getInt(TAG_ORGANIZATIONID);
 			shelter_phoneNumber=detailsShelterObj.getString(TAG_CONTACTNUMBER);
 			shelter_address=detailsShelterObj.getString(TAG_ADDRESS);
@@ -140,7 +141,7 @@ public class Deserializer {
 	 * @param array
 	 * @return Return an ArrayList of Video from an JSONArray 
 	 */
-	private static ArrayList<Video> JSONArrayToArrayList(JSONArray array){
+	public static ArrayList<Video> JSONArrayToArrayList(JSONArray array){
 		ArrayList<Video> temp=new ArrayList<Video>(0);
 		try{
 			for(int i = 0; i < array.length(); i++){
