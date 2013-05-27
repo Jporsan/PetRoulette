@@ -41,14 +41,31 @@ public class ViewMoreActivity extends Activity {
 	ProgressBar mProgressBar;
 	MainActivity main;
 	ApplicationController ac;
-	OnClickListener listener;
+	OnClickListener listener;// listener used for all the images
 	Intent returnIntent;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		//setContentView(R.layout.viewmore_layout);
+
 		
+		ac=(ApplicationController) getApplicationContext();
+		pet=ac.getPet();
+		setUpView();
+		
+	}
+	
+	public void setUpView(){
+
+		setContentView(R.layout.viewmore_layout);
+		setUpListener();
+		others=(LinearLayout) findViewById(R.id.Others);
+		this.setUpTextViews();
+		this.setUpButtons();
+	}
+	
+	public void setUpListener(){
 		listener=new OnClickListener() {
 			
 			@Override
@@ -62,33 +79,15 @@ public class ViewMoreActivity extends Activity {
 			}
 		};
 		
-		
-		ac=(ApplicationController) getApplicationContext();
-		pet=ac.getPet();
-		setUpView();
-		
-	}
-	//http://img.youtube.com/vi/%7Bid_video%7D/0.jpg
-	public void giveDetails(){
-		
-		
-	}
-	public void setUpView(){
-		setContentView(R.layout.viewmore_layout);
-		others=(LinearLayout) findViewById(R.id.Others);
-		this.setUpTextViews();
-		this.setUpButtons();
 	}
 	
 	public void setUpButtons(){
 	
-		
 		ArrayList<Video> videos=pet.getPet_videoList();
 		
 		for (int i =0;i<videos.size();i++){
 			
 			String videoId=getYoutubeIdWithUrl(videos.get(i).getVideo_url());
-
 			ImageView img=new ImageView(this);
 			TextView title=new TextView(this);
 			title.setId(i);
@@ -100,8 +99,8 @@ public class ViewMoreActivity extends Activity {
 			new DownloadImageTask(img).execute("http://img.youtube.com/vi/"+videoId+"/0.jpg");
 			others.addView(img);
 		}
-		
 	}
+	
 	public String getYoutubeIdWithUrl(String url){
 		
 		String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";

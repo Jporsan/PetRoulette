@@ -101,10 +101,6 @@ public class OpenYouTubePlayerActivity{
 	static final String YOUTUBE_VIDEO_INFORMATION_URL = "http://www.youtube.com/get_video_info?&video_id=";
 	static final String YOUTUBE_PLAYLIST_ATOM_FEED_URL = "http://gdata.youtube.com/feeds/api/playlists/";
 	
-	protected ProgressBar mProgressBar;
-	protected TextView    mProgressMessage;
-	protected VideoView   mVideoView;
-	
 	public final static String MSG_INIT = "com.keyes.video.msg.init";
 	protected String      mMsgInit       = "Initializing";
 	
@@ -133,7 +129,9 @@ public class OpenYouTubePlayerActivity{
 	protected QueryYouTubeTask mQueryYouTubeTask;
 	
 	protected String mVideoId = null;
-
+	protected ProgressBar mProgressBar;
+	protected TextView    mProgressMessage;
+	protected VideoView   mVideoView;
 	protected Uri lVideoIdUri;
 	protected static MainActivity activity;
 	

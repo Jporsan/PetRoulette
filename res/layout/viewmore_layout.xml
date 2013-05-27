@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -63,6 +63,7 @@
        		  <LinearLayout
        		      android:layout_width="wrap_content"
        		      android:layout_height="wrap_content"
+       		      android:layout_marginRight="10dp"
        		      android:orientation="vertical" >
 	           		 
        		            <TextView
@@ -85,15 +86,13 @@
        		      
        		      </LinearLayout>
        		      
-       		       <LinearLayout
-           		 	android:layout_width="100dp"
-            		android:layout_height="fill_parent" 
-            		android:orientation="vertical">   		      
-       		      </LinearLayout>
+
        		      
          		  <LinearLayout
          		      android:layout_width="wrap_content"
          		      android:layout_height="wrap_content"
+         		      android:layout_marginLeft="10dp"
+         		      
          		      android:orientation="vertical" >
 	           		 
        		        	  <TextView

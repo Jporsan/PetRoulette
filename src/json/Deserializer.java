@@ -1,12 +1,15 @@
 package json;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.text.format.DateFormat;
 
+import model.Appointment;
 import model.Pet;
 import model.Video;
 
@@ -45,9 +48,13 @@ public class Deserializer {
 	private static final String TAG_ORGANIZATION="organization";
 	private static final String TAG_YOUTUBECHANNEL="youtube_channel";
 	private static final String TAG_CONTACTNUMBER="contact_number";
-	//TAG_NAME already exist
 	private static final String TAG_ADDRESS="address";
 	private static final String TAG_EMAIL="email";
+	
+	//JSON APPOINTMENT RESULT
+	private static final String TAG_APPOINTMENT_RESULT="appointment_result";
+	private static final String TAG_QUERIES="queries";
+	
 	
 	public Deserializer(){
 		
@@ -117,6 +124,57 @@ public class Deserializer {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * 
+	 * @return -1 if an error occured,1 if appointment is ok, 0 if not ok
+	 */
+	@SuppressLint("SimpleDateFormat")
+	public int arrangeAppointment(Appointment app){
+		
+		String name=app.getUser_name();
+		String email=app.getUser_email();
+		String contact_number=app.getUser_phoneNumber();
+		//SimpleDateFormat sdf=new SimpleDateFormat("MM/dd/yyyy");
+		String time=app.getAppointment_creationDate();
+		String date=app.getRequested_date();
+		
+		if(this.jsonparser.appointment(name, email, contact_number, time, date)){
+			
+			
+			return getAppointmentResult();
+		}
+		else{
+			return -1;
+		}
+	}
+	
+	public int getAppointmentResult(){
+		
+		JSONObject appointment=JSONParser.getAppointment();
+		
+		try {
+			JSONObject resultData= appointment.getJSONObject(TAG_DATA);
+			//JSONObject appointmentResult= resultData.getJSONObject(TAG_QUERIES);
+			
+			String result= resultData.getString(TAG_APPOINTMENT_RESULT);
+			
+			if(result.equals("False")){
+				return 0;
+			}
+			else if(result.equals("True")){
+				return 1;
+			}
+			else{
+				return -1;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+
 	}
 	
 	

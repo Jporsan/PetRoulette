@@ -7,6 +7,7 @@
     <string name="Next">Next</string>
     <string name="Nextcount">This pet has been nexted :</string>
     <string name="Pet_name">Pet\'s name</string>
-    
+    <string name="title_activity_adopt">AdoptActivity</string>
+    <string name="title_activity_donate">DonateActivity</string>
 
 </resources>

@@ -67,6 +67,8 @@ public class JSONRandom extends JSONParser implements Runnable {
 		   	}
 		   	}
 	 }
+	 
+	 
 
 	public String getJsonRandom() {
 		return jsonRandom;

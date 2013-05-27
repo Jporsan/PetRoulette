@@ -241,13 +241,9 @@ public class Pet implements Serializable {
 	}
 
 
-
-
 	public String getShelter_youtubeChannel() {
 		return shelter_youtubeChannel;
 	}
-
-
 
 
 	public void setShelter_youtubeChannel(String shelter_youtubeChannel) {

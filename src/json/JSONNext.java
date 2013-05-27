@@ -24,7 +24,7 @@ public class JSONNext extends JSONParser implements Runnable {
 			  
 			  con.setRequestProperty("Cookie", cookie);
 			  con.connect();
-			  this.setIs(con.getInputStream());
+			  this.setIs(con.getInputStream());// the inputStream is modified
 			  this.setJsonNext(readStream());
 			  con.disconnect();
 

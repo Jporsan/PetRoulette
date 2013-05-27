@@ -16,7 +16,9 @@ public class JSONParser {
 	//***************************************************************
     static JSONObject random= null;
     static JSONObject details= null;
+    static JSONObject appointment=null;
     //static JSONObject next= null;
+    
 	//***************************************************************
 	//Parameters
     //***************************************************************
@@ -85,7 +87,40 @@ public class JSONParser {
     	        }
     	   
     	    }
+    /**
+     * 
+     * @param name
+     * @param email
+     * @param contact_number
+     * @param time
+     * @param date
+     * @return true if everything is ok, false if something went wrong
+     */
   
+    public boolean appointment(String name,String email,String contact_number,String time, String date){
+    	
+    	JSONAppointment jsonApp=new JSONAppointment(name,email,contact_number,time,date);
+    	Thread t= new Thread(jsonApp);
+    	t.start();
+        
+    	try {
+			sem.acquire();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+    	        // try parse the string to a JSON object
+    	        try {
+    	            appointment = new JSONObject(jsonApp.getJsonresult());
+    	            return true;
+    	            
+    	        } catch (JSONException e) {
+    	            Log.e("JSON Parser", "Error parsing data " + e.toString());
+    	            return false;
+    	        }
+    	
+    }
 /**
  * Function called in order to transform the InputStream "is" in a string
  * @return 
@@ -133,4 +168,10 @@ public static JSONObject getRandom(){
 public static JSONObject getDetails(){
 	return details;
 }
+
+public static JSONObject getAppointment() {
+	return appointment;
+}
+
+
 }

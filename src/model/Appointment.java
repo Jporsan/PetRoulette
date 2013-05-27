@@ -1,6 +1,9 @@
 package model;
 
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import android.text.format.*;
 
 public class Appointment {
@@ -12,8 +15,8 @@ public class Appointment {
 	private String user_name;
 	private String user_email;
 	private String user_phoneNumber;
-	private DateFormat appointment_creationDate;
-	private DateFormat requested_date;
+	private String appointment_creationDate;
+	private String requested_date;
 	
 /******************************************************************************************
 *                                 Methods
@@ -23,7 +26,7 @@ public class Appointment {
 *                                  Constructors
 ******************************************************************************************/	
 	public Appointment(Pet appointment_pet, String user_name,
-			String user_email, String user_phoneNumber, DateFormat requested_date) {
+			String user_email, String user_phoneNumber, String requested_date) {
 		super();
 		this.appointment_pet = appointment_pet;
 		this.user_name = user_name;
@@ -33,6 +36,9 @@ public class Appointment {
 		this.requested_date=requested_date;
 	}
 
+	public Appointment(){
+		
+	}
 	
 /******************************************************************************************
 *                                  Getters and setters
@@ -70,19 +76,19 @@ public void setUser_phoneNumber(String user_phoneNumber) {
 	this.user_phoneNumber = user_phoneNumber;
 }
 
-public DateFormat getAppointment_creationDate() {
+public String getAppointment_creationDate() {
 	return appointment_creationDate;
 }
 
-public void setAppointment_creationDate(DateFormat appointment_creationDate) {
+public void setAppointment_creationDate(String appointment_creationDate) {
 	this.appointment_creationDate = appointment_creationDate;
 }
 
-public DateFormat getRequested_date() {
+public String getRequested_date() {
 	return requested_date;
 }
 
-public void setRequested_date(DateFormat requested_date) {
+public void setRequested_date(String requested_date) {
 	this.requested_date = requested_date;
 }
 	
